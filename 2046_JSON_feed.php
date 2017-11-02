@@ -8,7 +8,6 @@ Version: 0.2
 Author URI: http://2046.cz
 */
 
-// get the subtitles for a post with given custom_meta
 function f2046_get_json_feed() {
 	header('Content-Type: text/html; charset=utf-8'); // <-- just for previe
 	// header('Content-Type: application/json'); // <-- run if you wanna get the JSON proper header
@@ -19,22 +18,22 @@ function f2046_get_json_feed() {
 		// The Loop
 		$i = 0;
 		while ( have_posts() ) : 
-				the_post();
-				$excerpt = strip_tags(get_the_excerpt());
-				$title = get_the_title();
-				$link = get_permalink();
-				
-				$output[$i] = array(
-					"id" => $post->ID,
-					"title" => $title,
-					"url" => $link,
-					"excerpt" => $excerpt,
-				);
+			the_post();
+			$excerpt = strip_tags(get_the_excerpt());
+			$title = get_the_title();
+			$link = get_permalink();
+
+			$output[$i] = array(
+				"id" => $post->ID,
+				"title" => $title,
+				"url" => $link,
+				"excerpt" => $excerpt,
+			);
 			$i++;
 		endwhile;
-	
 	endif;
-	echo json_decode($output);
+	// give me the money babe	
+	echo json_encode($output);
 	
 }
 
